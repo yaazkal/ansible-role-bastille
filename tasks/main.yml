@@ -34,7 +34,7 @@
 
 - name: "Configures pf"
   template:
-    src: etc/pf.conf
+    src: etc/pf.conf.j2
     dest: /etc/pf.conf
 
 - name: "Enables pf service"

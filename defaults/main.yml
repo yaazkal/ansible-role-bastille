@@ -1,0 +1,6 @@
+---
+bastille_zfs_enable: ""
+bastille_zfs_zpool: ""
+bastille_ext_if: "vtnet0"
+bastille_release: "12.1-RELEASE"
+bastille_timezone: "Etc/UTC"

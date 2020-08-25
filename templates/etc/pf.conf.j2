@@ -1,4 +1,4 @@
-ext_if="vtnet0"
+ext_if="{{ bastille_ext_if }}"
 
 set block-policy return
 scrub in on $ext_if all fragment reassemble
