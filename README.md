@@ -1,6 +1,6 @@
 # ansible-role-bastille
 
-An ansible role that helps configure a server as a [BastilleBSD](https://bastillebsd.org/) host.
+An ansible role that helps configure a server as a [BastilleBSD](https://bastillebsd.org/) host for running containers (jails based) in [FreeBSD](https://www.freebsd.org/).
 
 This is a work in progress ansible role. **Use it at your own risk**.
 
