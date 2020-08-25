@@ -3,7 +3,11 @@ An ansible role that helps configure a server as a BastilleBSD host
 
 This is a work in progress ansible role. **Use it at your own risk**
 
+## Role variables
+
 You **need** to set some variables for the host, please check the example. Later I can give defaults for flexibility.
+
+## Example Playbook
 
 A playbook can look like this:
 
@@ -12,7 +16,7 @@ A playbook can look like this:
 - name: "Initial configuration of the system"
   hosts: bastille
   roles:
-    - bastille
+    - yaazkal.bastille
 ```
 
 A host file can look like this:
@@ -32,3 +36,7 @@ bastille:
 Then you can run:
 
 `ansible-playbook -i hosts.yml bastille_provision.yml`
+
+## License
+
+BSD 3 clause. See LICENSE file.

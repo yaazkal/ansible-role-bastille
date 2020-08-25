@@ -1,44 +1,57 @@
 ---
-  - name: "Installs bastille"
-    pkgng:
-      name: bastille
-      state: present
-  - name: "Configures bastille"
-    template:
-      src: usr/local/etc/bastille/bastille.conf.j2
-      dest: /usr/local/etc/bastille/bastille.conf
-  - name: "Enables bastille service"
-    lineinfile:
-      path: /etc/rc.conf
-      regexp: "^bastille_enable.+$"
-      line: 'bastille_enable="YES"'
-  - name: "Setup cloned interfaces"
-    lineinfile:
-      path: /etc/rc.conf
-      regexp: "^cloned_interfaces.+$"
-      line: 'cloned_interfaces="lo1"'
-  - name: "Setup lo1 interface name"
-    lineinfile:
-      path: /etc/rc.conf
-      regexp: "^ifconfig_lo1_name.+$"
-      line: 'ifconfig_lo1_name="bastille0"'
-  - name: "Starts the cloned interface"
-    command: 'service netif cloneup'
-  - name: "Configures pf"
-    template:
-      src: etc/pf.conf
-      dest: /etc/pf.conf
-  - name: "Enables pf service"
-    lineinfile:
-      path: /etc/rc.conf
-      regexp: "^pf_enable.+$"
-      line: 'pf_enable="YES"'
-  - name: "Starts pf"
-    command: 'service pf start'
-  - name: "Check if Bastille has been bootstrapped"
-    stat:
-      path: /usr/local/bastille/releases/{{ bastille_release }}
-    register: bastille_bootstrapped
-  - name: "Bootstraps Bastille"
-    command: 'bastille bootstrap {{ bastille_release }} update'
-    when: not bastille_bootstrapped.stat.exists
+# Installation
+- name: "Installs bastille"
+  pkgng:
+    name: bastille
+    state: present
+
+- name: "Configures bastille"
+  template:
+    src: usr/local/etc/bastille/bastille.conf.j2
+    dest: /usr/local/etc/bastille/bastille.conf
+
+- name: "Enables bastille service"
+  lineinfile:
+    path: /etc/rc.conf
+    regexp: "^bastille_enable.+$"
+    line: 'bastille_enable="YES"'
+
+# Networking
+- name: "Setup cloned interfaces"
+  lineinfile:
+    path: /etc/rc.conf
+    regexp: "^cloned_interfaces.+$"
+    line: 'cloned_interfaces="lo1"'
+
+- name: "Setup lo1 interface name"
+  lineinfile:
+    path: /etc/rc.conf
+    regexp: "^ifconfig_lo1_name.+$"
+    line: 'ifconfig_lo1_name="bastille0"'
+
+- name: "Starts the cloned interface"
+  command: 'service netif cloneup'
+
+- name: "Configures pf"
+  template:
+    src: etc/pf.conf
+    dest: /etc/pf.conf
+
+- name: "Enables pf service"
+  lineinfile:
+    path: /etc/rc.conf
+    regexp: "^pf_enable.+$"
+    line: 'pf_enable="YES"'
+
+- name: "Starts pf"
+  command: 'service pf start'
+
+# Bootstrapping
+- name: "Check if Bastille has been bootstrapped"
+  stat:
+    path: /usr/local/bastille/releases/{{ bastille_release }}
+  register: bastille_bootstrapped
+
+- name: "Bootstraps Bastille"
+  command: 'bastille bootstrap {{ bastille_release }} update'
+  when: not bastille_bootstrapped.stat.exists
