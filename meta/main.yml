@@ -10,7 +10,6 @@ galaxy_info:
   platforms:
     - name: FreeBSD
       versions:
-        - 12.0
         - 12.1
   
   galaxy_tags:

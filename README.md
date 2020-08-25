@@ -1,7 +1,12 @@
 # ansible-role-bastille
-An ansible role that helps configure a server as a BastilleBSD host
 
-This is a work in progress ansible role. **Use it at your own risk**
+An ansible role that helps configure a server as a [BastilleBSD](https://bastillebsd.org/) host.
+
+This is a work in progress ansible role. **Use it at your own risk**.
+
+## Requirements
+
+You should have a fresh FreeBSD 12.1 installation with Python installed (3.7 recommended).
 
 ## Role variables
 
@@ -17,6 +22,10 @@ This are the role variables and its defaults:
 
 
 Set them at your host_vars or host definition as you want it (see example).
+
+## Dependencies
+
+None.
 
 ## Example Playbook
 
@@ -52,3 +61,7 @@ Then you can run:
 ## License
 
 BSD 3 clause. See LICENSE file.
+
+## Author Information
+
+[@yaazkal](https://twitter.com/yaazkal) - Juan David Hurtado G.
