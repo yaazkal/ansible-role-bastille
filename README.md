@@ -4,6 +4,10 @@ An ansible role that helps configure a server as a [BastilleBSD](https://bastill
 
 This is a work in progress ansible role. **Use it at your own risk**.
 
+## Install this role
+
+Simply run `ansible-galaxy install yaazkal.bastille` on your machine. Then integrate the role on your own playbook (see the example below).
+
 ## Requirements
 
 You should have a fresh FreeBSD 12.1 installation with Python installed (3.7 recommended).
