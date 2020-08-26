@@ -43,7 +43,7 @@ A playbook can look like this:
     - yaazkal.bastille
 ```
 
-A host file can look like this (this example overrides all default variables):
+An inventory file can look like this (this example overrides all default variables):
 
 ```yaml
 # File name: hosts.yml
