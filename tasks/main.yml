@@ -44,7 +44,9 @@
     line: 'pf_enable="YES"'
 
 - name: "Starts pf"
-  command: 'service pf start'
+  service:
+    name: pf
+    state: restarted
 
 # Bootstrapping
 - name: "Check if Bastille has been bootstrapped"
