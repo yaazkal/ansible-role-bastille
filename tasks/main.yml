@@ -1,9 +1,55 @@
 ---
-# Installation
-- name: "Installs bastille"
+# Installation using pkg
+- name: "Removes Bastille if installed using other method previously"
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /usr/local/bin/bastille
+    - /usr/local/share/bastille
+    - /usr/local/share/man/man1/bastille.1.gz
+    - /usr/local/etc/bastille/bastille.conf.sample
+    - /usr/local/etc/rc.d/bastille
+  when: bastille_version is not defined
+
+- name: "Installs Bastille using pkg"
   pkgng:
     name: bastille
     state: present
+  when: bastille_version is not defined
+
+# Installation of custom version from repo
+- name: "Removes Bastille if installed using pkg previously"
+  pkgng:
+    name: bastille
+    state: absent
+  when: bastille_version is defined
+
+- name: "Downloads custom version of Bastille"
+  get_url:
+    url: "https://github.com/BastilleBSD/bastille/archive/refs/tags/{{ bastille_version }}.tar.gz"
+    dest: "/tmp/{{ bastille_version }}.tar.gz"
+  when: bastille_version is defined
+
+- name: "Unpacks custom Bastille version"
+  command: "tar -xzf /tmp/{{ bastille_version }}.tar.gz"
+  args:
+    chdir: "/tmp"
+    warn: false # We ignore the warning of using unarchive module since that module does not support bsdtar
+  when: bastille_version is defined
+  
+- name: "Uninstall previous Bastille version"
+  command: "make uninstall"
+  args:
+    chdir: "/tmp/bastille-{{ bastille_version }}"
+  when: bastille_version is defined
+
+- name: "Installs custom Bastille version"
+  command: "make install"
+  args:
+    chdir: "/tmp/bastille-{{ bastille_version }}"
+    creates: "/usr/local/bin/bastille"
+  when: bastille_version is defined
 
 - name: "Configures bastille"
   template:

@@ -16,13 +16,14 @@ This has been tested on FreeBSD 13.0 with Python installed (3.7 recommended).
 
 This are the role variables and its defaults:
 
-| Variable            | Default value | Description                                               |
-|---------------------|---------------|-----------------------------------------------------------|
-| bastille_zfs_enable |               | Set to YES to enable some ZFS magic (recommended)         |
-| bastille_zfs_zpool  |               | The ZFS pool where Bastille will host its files and jails |
-| bastille_ext_if     | vtnet0        | External network interface                                |
-| bastille_releases   | 13.0-RELEASE  | List of releases to be available for jails                |
-| bastille_timezone   | Etc/UTC       |                                                           |
+| Variable            | Default value | Description                                                                                      |
+|---------------------|---------------|--------------------------------------------------------------------------------------------------|
+| bastille_version    |               | If set, installs the given version (tag) from bastille repo instead of the pkg version available |
+| bastille_zfs_enable |               | Set to YES to enable some ZFS magic (recommended)                                                |
+| bastille_zfs_zpool  |               | The ZFS pool where Bastille will host its files and jails                                        |
+| bastille_ext_if     | vtnet0        | External network interface                                                                       |
+| bastille_releases   | 13.0-RELEASE  | List of releases to be available for jails                                                       |
+| bastille_timezone   | Etc/UTC       |                                                                                                  |
 
 
 Set them at your host_vars or host definition as you want it (see example).
@@ -51,6 +52,7 @@ bastille:
   hosts:
     example.com:
       ansible_user: root
+      bastille_version: "0.9.20210714"
       bastille_zfs_enable: "YES"
       bastille_zfs_zpool: "zroot"
       bastille_ext_if: "vtnet0"
