@@ -21,9 +21,10 @@ This are the role variables and its defaults:
 | bastille_version    |               | If set, installs the given version (tag) from bastille repo instead of the pkg version available |
 | bastille_zfs_enable |               | Set to YES to enable some ZFS magic (recommended)                                                |
 | bastille_zfs_zpool  |               | The ZFS pool where Bastille will host its files and jails                                        |
-| bastille_ext_if     | vtnet0        | External network interface                                                                       |
-| bastille_releases   | 13.0-RELEASE  | List of releases to be available for jails                                                       |
 | bastille_timezone   | Etc/UTC       |                                                                                                  |
+| bastille_ext_if     | vtnet0        | External network interface                                                                       |
+| bastille_releases   | 13.0-RELEASE  | List of releases to be available for jails creation (usually for thick jails)                    |
+| bastille_templates  |               | List of git repos where templates are hosted. Those templates will be available for jails.       |
 
 
 Set them at your host_vars or host definition as you want it (see example).
@@ -53,13 +54,16 @@ bastille:
     example.com:
       ansible_user: root
       bastille_version: "0.9.20210714"
+      bastille_timezone: "America/Bogota"
       bastille_zfs_enable: "YES"
       bastille_zfs_zpool: "zroot"
       bastille_ext_if: "vtnet0"
       bastille_releases:
         - 13.0-RELEASE
         - 12.2-RELEASE
-      bastille_timezone: "America/Bogota"
+      bastille_templates:
+        - https://gitlab.com/bastillebsd-templates/nginx
+        - https://github.com/yaazkal/bastille-postgres
 ```
 
 Then you can run:
