@@ -10,7 +10,7 @@ Simply run `ansible-galaxy install yaazkal.bastille` on your machine. Then integ
 
 ## Requirements
 
-You should have a fresh FreeBSD 12.1 installation with Python installed (3.7 recommended).
+This has been tested on FreeBSD 13.0 with Python installed (3.7 recommended).
 
 ## Role variables
 
@@ -21,7 +21,7 @@ This are the role variables and its defaults:
 | bastille_zfs_enable |               | Set to YES to enable some ZFS magic (recommended)         |
 | bastille_zfs_zpool  |               | The ZFS pool where Bastille will host its files and jails |
 | bastille_ext_if     | vtnet0        | External network interface                                |
-| bastille_release    | 12.1-RELEASE  |                                                           |
+| bastille_releases   | 13.0-RELEASE  | List of releases to be available for jails                |
 | bastille_timezone   | Etc/UTC       |                                                           |
 
 
@@ -54,7 +54,9 @@ bastille:
       bastille_zfs_enable: "YES"
       bastille_zfs_zpool: "zroot"
       bastille_ext_if: "vtnet0"
-      bastille_release: "12.1-RELEASE"
+      bastille_releases:
+        - 13.0-RELEASE
+        - 12.2-RELEASE
       bastille_timezone: "America/Bogota"
 ```
 
