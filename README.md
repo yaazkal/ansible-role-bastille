@@ -14,7 +14,7 @@ This has been tested on FreeBSD 13.0 with Python installed (3.7 recommended).
 
 ## Role variables
 
-This are the role variables and its defaults:
+This are the role variables and its defaults, set them at your `host_vars` or host definition as you want it (see example).
 
 | Variable            | Default value | Description                                                                                      |
 |---------------------|---------------|--------------------------------------------------------------------------------------------------|
@@ -25,9 +25,7 @@ This are the role variables and its defaults:
 | bastille_ext_if     | vtnet0        | External network interface                                                                       |
 | bastille_releases   | 13.0-RELEASE  | List of releases to be available for jails creation (usually for thick jails)                    |
 | bastille_templates  |               | List of git repos where templates are hosted. Those templates will be available for jails.       |
-
-
-Set them at your host_vars or host definition as you want it (see example).
+| bastille_jails      |               | List of jails to be created. See example for options.                                            |
 
 ## Dependencies
 
@@ -64,6 +62,14 @@ bastille:
       bastille_templates:
         - https://gitlab.com/bastillebsd-templates/nginx
         - https://github.com/yaazkal/bastille-postgres
+      bastille_jails:
+        - name: thinjail # this is the default method in Bastille
+          release: 13.0-RELEASE
+          ip: 10.17.89.1
+        - name: thickjail
+          release: 13.0-RELEASE
+          ip: 10.17.89.2
+          options: -T
 ```
 
 Then you can run:
