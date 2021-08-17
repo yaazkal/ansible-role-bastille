@@ -16,16 +16,16 @@ This has been tested on FreeBSD 13.0 with Python installed (3.7 recommended).
 
 This are the role variables and its defaults, set them at your `host_vars` or host definition as you want it (see example).
 
-| Variable            | Default value | Description                                                                                      |
-|---------------------|---------------|--------------------------------------------------------------------------------------------------|
-| bastille_version    |               | If set, installs the given version (tag) from bastille repo instead of the pkg version available |
-| bastille_zfs_enable |               | Set to YES to enable some ZFS magic (recommended)                                                |
-| bastille_zfs_zpool  |               | The ZFS pool where Bastille will host its files and jails                                        |
-| bastille_timezone   | Etc/UTC       |                                                                                                  |
-| bastille_ext_if     | vtnet0        | External network interface                                                                       |
-| bastille_releases   | 13.0-RELEASE  | List of releases to be available for jails creation (usually for thick jails)                    |
-| bastille_templates  |               | List of git repos where templates are hosted. Those templates will be available for jails.       |
-| bastille_jails      |               | List of jails to be created. See example for options.                                            |
+| Variable            | Default value | Description                                                                                       |
+|---------------------|---------------|---------------------------------------------------------------------------------------------------|
+| bastille_version    |               | If set, installs the given version (tag) from bastille repo instead of the pkg version available. |
+| bastille_zfs_enable |               | Set to YES to enable some ZFS magic (recommended).                                                |
+| bastille_zfs_zpool  |               | The ZFS pool where Bastille will host its files and jails.                                        |
+| bastille_timezone   | Etc/UTC       |                                                                                                   |
+| bastille_ext_if     | vtnet0        | External network interface.                                                                       |
+| bastille_releases   | 13.0-RELEASE  | List of releases to be available for jails creation.                                              |
+| bastille_templates  |               | List of git repos where templates are hosted. Those templates will be available for jails.        |
+| bastille_jails      |               | List of jails to be created. See example for options.                                             |
 
 ## Dependencies
 
