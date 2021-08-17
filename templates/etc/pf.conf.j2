@@ -7,7 +7,7 @@ scrub in on $ext_if all fragment reassemble
 set skip on lo
 
 table <jails> persist
-nat on $ext_if from <jails> to any -> ($ext_if)
+nat on $ext_if from <jails> to any -> ($ext_if:0)
 rdr-anchor "rdr/*"
 
 block in all
