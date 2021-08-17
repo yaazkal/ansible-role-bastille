@@ -63,9 +63,11 @@ bastille:
         - https://gitlab.com/bastillebsd-templates/nginx
         - https://github.com/yaazkal/bastille-postgres
       bastille_jails:
-        - name: thinjail # this is the default method in Bastille
+        - name: defaultjail
           release: 13.0-RELEASE
           ip: 10.17.89.1
+          templates:
+            - "bastillebsd-templates/nginx"
         - name: thickjail
           release: 13.0-RELEASE
           ip: 10.17.89.2
