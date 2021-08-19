@@ -35,13 +35,8 @@
   command: "tar -xzf /tmp/{{ bastille_version }}.tar.gz"
   args:
     chdir: "/tmp"
+    creates: "/tmp/{{ bastille_version }}/Makefile"
     warn: false # We ignore the warning of using unarchive module since that module does not support bsdtar
-  when: bastille_version is defined
-  
-- name: "Uninstall previous Bastille version"
-  command: "make uninstall"
-  args:
-    chdir: "/tmp/bastille-{{ bastille_version }}"
   when: bastille_version is defined
 
 - name: "Installs custom Bastille version"
