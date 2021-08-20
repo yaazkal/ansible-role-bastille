@@ -109,7 +109,7 @@
 - name: "Create jails"
   shell: bastille create {{ item.options | default('') }} {{ item.name }} {{ item.release }} {{ item.ip }} {{ item.interface | default(bastille_ext_if) }}
   args:
-    creates: "/usr/local/bastille/jails/{{ item.name }}/root/COPYRIGHT"
+    creates: "{{ bastille_prefix }}/jails/{{ item.name }}/root/COPYRIGHT"
   loop: "{{ bastille_jails }}"
   when: bastille_jails is defined
 
