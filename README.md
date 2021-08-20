@@ -10,7 +10,9 @@ Simply run `ansible-galaxy install yaazkal.bastille` on your machine. Then integ
 
 ## Requirements
 
-This has been tested on FreeBSD 13.0 with Python installed (3.7 recommended).
+* FreeBSD 11.4, 12.2 or 13.0
+* Python installed (3.7 recommended).
+* `ca_root_nss` is also recommended specially on FreeBSD 11.4 in order to not fail when installing custom Bastille version from github tag.
 
 ## Role variables
 
