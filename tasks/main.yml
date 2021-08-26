@@ -114,8 +114,6 @@
   when: bastille_jails is defined
 
 - name: "Apply templates to jails"
-  command: bastille template "{{ item.0.name }}" "{{ item.1 }}"
-  with_subelements:
-    - "{{ bastille_jails }}"
-    - templates
-    - skip_missing: yes
+  command: bastille template {{ item.name }} {{ item.templates | map('quote') | join(' ') }} {{ ['--arg'] | product(item.template_args | default([]) | map('quote')) | map('join', ' ') | join(' ') }}
+  loop: "{{ bastille_jails }}"
+  when: item.templates is defined

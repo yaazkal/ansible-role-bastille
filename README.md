@@ -71,6 +71,9 @@ bastille:
           ip: 10.17.89.1
           templates:
             - "bastillebsd-templates/nginx"
+          template_args:
+            - user=root
+            - password=MYSUPERSECRETPASSWORD
         - name: thickjail
           release: 13.0-RELEASE
           ip: 10.17.89.2
