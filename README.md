@@ -70,10 +70,14 @@ bastille:
           release: 13.0-RELEASE
           ip: 10.17.89.1
           templates:
-            - "bastillebsd-templates/nginx"
-          template_args:
-            - user=root
-            - password=MYSUPERSECRETPASSWORD
+            - template: "yaazkal/bastille-postgres"
+              args:
+                - version=12
+            - template: "yaazkal/bastille-matomo"
+              args:
+                - version=2
+                - other=yes
+                - user=whatever
         - name: thickjail
           release: 13.0-RELEASE
           ip: 10.17.89.2

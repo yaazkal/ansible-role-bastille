@@ -114,6 +114,6 @@
   when: bastille_jails is defined
 
 - name: "Apply templates to jails"
-  command: bastille template {{ item.name }} {{ item.templates | map('quote') | join(' ') }} {{ ['--arg'] | product(item.template_args | default([]) | map('quote')) | map('join', ' ') | join(' ') }}
-  loop: "{{ bastille_jails }}"
+  command: bastille template {{ item.0.name|quote }} {{ item.1.template|quote }} {{ ['--arg']|product(item.1.args|default([])|map('quote'))|map('join', ' ')|join(' ') }}
+  loop: "{{ bastille_jails | subelements('templates', skip_missing=True) }}"
   when: item.templates is defined
