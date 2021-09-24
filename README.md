@@ -69,11 +69,13 @@ bastille:
         - name: defaultjail
           release: 13.0-RELEASE
           ip: 10.17.89.1
+          interface: bastille0
           templates:
             - "bastillebsd-templates/nginx"
         - name: thickjail
           release: 13.0-RELEASE
           ip: 10.17.89.2
+          interface: bastille0
           options: -T
 ```
 
