@@ -88,16 +88,15 @@
   command: 'bastille bootstrap {{ item }} update'
   loop: "{{ bastille_releases }}"
 
-# Bootstrapping templates
-- name: "Ensure git is installed in order to bootstrap templates"
-  pkgng:
-    name: git-lite
-    state: present
-  when: bastille_templates is defined
-
-- name: "Bootstraps Templates"
-  command: 'bastille bootstrap {{ item }}'
-  loop: "{{ bastille_templates }}"
+- name: Bootstrapping templates
+  block:
+    - name: "Ensure git is installed in order to bootstrap templates"
+      pkgng:
+        name: git-lite
+        state: present
+    - name: "Bootstraps Templates"
+      command: 'bastille bootstrap {{ item }}'
+      loop: "{{ bastille_templates }}"
   when: bastille_templates is defined
 
 - name: "Create jails"
