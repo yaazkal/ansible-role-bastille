@@ -86,6 +86,8 @@
 # Bootstrapping releases
 - name: "Bootstraps Releases"
   command: 'bastille bootstrap {{ item }} update'
+  args:
+    creates: "{{ bastille_prefix }}/releases/{{ item }}/COPYRIGHT"
   loop: "{{ bastille_releases }}"
 
 - name: Bootstrapping templates
