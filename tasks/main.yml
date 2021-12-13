@@ -75,17 +75,13 @@
   template:
     src: etc/pf.conf.j2
     dest: /etc/pf.conf
+  notify: restart pf
 
 - name: "Enables pf service"
   lineinfile:
     path: /etc/rc.conf
     regexp: "^pf_enable.+$"
     line: 'pf_enable="YES"'
-
-- name: "Starts pf"
-  service:
-    name: pf
-    state: restarted
 
 # Bootstrapping releases
 - name: "Bootstraps Releases"
