@@ -70,6 +70,17 @@
     regexp: "^pf_enable.+$"
     line: 'pf_enable="YES"'
 
+- name: "Start pf"
+  service:
+    name: pf
+    state: started
+
+# After starting pf the first time, the ssh connection is lost.
+# Seems this wait_for_connection has no effect.
+# TODO: Check if there is a better way to handle that disconnection
+- name: "Wait for device"
+  wait_for_connection:
+
 # Bootstrapping releases
 - name: "Bootstraps Releases"
   command: 'bastille bootstrap {{ item }} update'
