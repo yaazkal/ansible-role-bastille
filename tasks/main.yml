@@ -1,21 +1,8 @@
 ---
-- name: Installation of Bastille
-  block:
-    - name: "Removes Bastille if installed using other method previously"
-      file:
-        path: "{{ item }}"
-        state: absent
-      loop:
-        - /usr/local/bin/bastille
-        - /usr/local/share/bastille
-        - /usr/local/share/man/man1/bastille.1.gz
-        - /usr/local/etc/bastille/bastille.conf.sample
-        - /usr/local/etc/rc.d/bastille
-
-    - name: "Installs Bastille using pkg"
-      pkgng:
-        name: bastille
-        state: present
+- name: "Installs Bastille using pkg"
+  pkgng:
+    name: bastille
+    state: present
   when: bastille_version is not defined
 
 - name: Installation of custom version from repo
