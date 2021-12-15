@@ -100,7 +100,7 @@
   when: bastille_templates is defined
 
 - name: "Create jails"
-  shell: bastille create {{ item.options | default('') }} {{ item.name }} {{ item.release }} {{ item.ip }} {{ item.interface | default(bastille_ext_if) }}
+  shell: bastille create {{ item.options | default('') }} {{ item.name }} {{ item.release }} {{ item.ip }} bastille0
   args:
     creates: "{{ bastille_prefix }}/jails/{{ item.name }}/root/COPYRIGHT"
   loop: "{{ bastille_jails }}"

@@ -2,7 +2,7 @@
 
 An ansible role that helps configure a server as a [BastilleBSD](https://bastillebsd.org/) host for running containers (jails based) in [FreeBSD](https://www.freebsd.org/).
 
-This is a work in progress ansible role. **Use it at your own risk**.
+This is a work in progress ansible role. At the moment assuming local interface for networking. **Use it at your own risk**.
 
 ## Install this role
 
