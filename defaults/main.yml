@@ -4,5 +4,5 @@ bastille_zfs_enable: ""
 bastille_zfs_zpool: ""
 bastille_ext_if: "vtnet0"
 bastille_releases:
-  - 13.0-RELEASE
+  - 13.1-RELEASE
 bastille_timezone: "Etc/UTC"
