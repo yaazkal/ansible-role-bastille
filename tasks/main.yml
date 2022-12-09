@@ -37,23 +37,21 @@
     dest: /usr/local/etc/bastille/bastille.conf
 
 - name: "Enables bastille service"
-  lineinfile:
-    path: /etc/rc.conf
-    regexp: "^bastille_enable.+$"
-    line: 'bastille_enable="YES"'
+  service:
+    name: bastille
+    enabled: true
 
 # Networking
 - name: "Setup cloned interfaces"
-  lineinfile:
-    path: /etc/rc.conf
-    regexp: "^cloned_interfaces.+$"
-    line: 'cloned_interfaces="lo1"'
+  community.general.sysrc:
+    name: cloned_interfaces
+    state: value_present
+    value: lo1
 
 - name: "Setup lo1 interface name"
-  lineinfile:
-    path: /etc/rc.conf
-    regexp: "^ifconfig_lo1_name.+$"
-    line: 'ifconfig_lo1_name="bastille0"'
+  community.general.sysrc:
+    name: ifconfig_lo1_name
+    value: bastille0
 
 - name: "Starts the cloned interface"
   command: 'service netif cloneup'
@@ -64,15 +62,10 @@
     dest: /etc/pf.conf
   notify: restart pf
 
-- name: "Enables pf service"
-  lineinfile:
-    path: /etc/rc.conf
-    regexp: "^pf_enable.+$"
-    line: 'pf_enable="YES"'
-
-- name: "Start pf"
-  service:
+- name: Enable pf in rc.conf
+  ansible.builtin.service:
     name: pf
+    enabled: "YES"
     state: started
 
 # After starting pf the first time, the ssh connection is lost.
