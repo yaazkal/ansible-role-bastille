@@ -10,9 +10,9 @@ Simply run `ansible-galaxy install yaazkal.bastille` on your machine. Then integ
 
 ## Requirements
 
-* FreeBSD 11.4, 12.2 or 13.0
-* Python installed (3.7 recommended).
-* `ca_root_nss` is also recommended specially on FreeBSD 11.4 in order to not fail when installing custom Bastille version from github tag.
+* A current supported release of FreeBSD. See [supported releases](https://www.freebsd.org/security/#sup)
+* Python installed on the target host.
+* `ca_root_nss` recommended specially on FreeBSD 11.4 (EOL) in order to not fail when installing custom Bastille version from github tag.
 
 ## Role variables
 
@@ -26,7 +26,7 @@ This are the role variables and its defaults, set them at your `host_vars` or ho
 | bastille_zfs_zpool  |                     | The ZFS pool where Bastille will host its files and jails.                                        |
 | bastille_timezone   | Etc/UTC             |                                                                                                   |
 | bastille_ext_if     | vtnet0              | External network interface.                                                                       |
-| bastille_releases   | 13.0-RELEASE        | List of releases to be available for jails creation.                                              |
+| bastille_releases   | 13.1-RELEASE        | List of releases to be available for jails creation.                                              |
 | bastille_templates  |                     | List of git repos where templates are hosted. Those templates will be available for jails.        |
 | bastille_jails      |                     | List of jails to be created. See example for options.                                             |
 
@@ -60,19 +60,19 @@ bastille:
       bastille_zfs_zpool: "zroot"
       bastille_ext_if: "vtnet0"
       bastille_releases:
-        - 13.0-RELEASE
-        - 12.2-RELEASE
+        - 13.1-RELEASE
+        - 12.4-RELEASE
       bastille_templates:
         - https://gitlab.com/bastillebsd-templates/nginx
         - https://github.com/yaazkal/bastille-postgres
       bastille_jails:
         - name: defaultjail
-          release: 13.0-RELEASE
+          release: 13.1-RELEASE
           ip: 10.17.89.1
           templates:
             - "bastillebsd-templates/nginx"
         - name: thickjail
-          release: 13.0-RELEASE
+          release: 13.1-RELEASE
           ip: 10.17.89.2
           options: -T
 ```
