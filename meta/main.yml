@@ -7,8 +7,8 @@ galaxy_info:
   platforms:
     - name: FreeBSD
       versions:
-        - 13.0
-        - 12.3
+        - 13.2
+        - 12.4
   galaxy_tags:
     - freebsd
     - jails
