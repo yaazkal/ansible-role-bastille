@@ -26,7 +26,7 @@ This are the role variables and its defaults, set them at your `host_vars` or ho
 | bastille_zfs_zpool  |                     | The ZFS pool where Bastille will host its files and jails.                                        |
 | bastille_timezone   | Etc/UTC             |                                                                                                   |
 | bastille_ext_if     | vtnet0              | External network interface.                                                                       |
-| bastille_releases   | 13.1-RELEASE        | List of releases to be available for jails creation.                                              |
+| bastille_releases   | 13.2-RELEASE        | List of releases to be available for jails creation.                                              |
 | bastille_templates  |                     | List of git repos where templates are hosted. Those templates will be available for jails.        |
 | bastille_jails      |                     | List of jails to be created. See example for options.                                             |
 
@@ -60,19 +60,19 @@ bastille:
       bastille_zfs_zpool: "zroot"
       bastille_ext_if: "vtnet0"
       bastille_releases:
-        - 13.1-RELEASE
+        - 13.2-RELEASE
         - 12.4-RELEASE
       bastille_templates:
         - https://gitlab.com/bastillebsd-templates/nginx
         - https://github.com/yaazkal/bastille-postgres
       bastille_jails:
         - name: defaultjail
-          release: 13.1-RELEASE
+          release: 13.2-RELEASE
           ip: 10.17.89.1
           templates:
             - "bastillebsd-templates/nginx"
         - name: thickjail
-          release: 13.1-RELEASE
+          release: 13.2-RELEASE
           ip: 10.17.89.2
           options: -T
 ```
